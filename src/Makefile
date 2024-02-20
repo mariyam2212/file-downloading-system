@@ -16,6 +16,9 @@ clean_data:
 clean_downloaded_data:
 	$(RM) downloads/*.txt
 
+clean_logfiles:
+	$(RM) logs/*
+
 generate_server_files:
 	chmod +x generate_files.sh
 	./generate_files.sh
@@ -29,9 +32,10 @@ run_client:
 run_client_th:
 	$(JR) Client_FS 8kb
 
+# provide number of clients in argument. E.g for N=2: make run_experiment_3 2
 run_experiment_3:
 	chmod +x run_experiment_3.sh
-	./run_experiment_3.sh
+	./run_experiment_3.sh 2
 
 run_experiment_4:
 	chmod +x run_experiment_4.sh
