@@ -51,15 +51,6 @@ public class Server_FS {
         while (true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-//                // Increment client count and get the current count
-//                int clientNumber = clientCount.incrementAndGet();
-//                // Get client's IP address and port
-//                String clientAddress = clientSocket.getInetAddress().getHostAddress();
-//                int clientPort = clientSocket.getPort();
-//
-//                System.out.println("Client #" + clientNumber + " connected from " + clientAddress + ":" + clientPort);
-//                logger.info("Client #" + clientNumber + " connected from " + clientAddress + ":" + clientPort);
-
                 new Thread(() -> handleClient(clientSocket)).start();
                 //handleClient(clientSocket);
             } catch (IOException e) {

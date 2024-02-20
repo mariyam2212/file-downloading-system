@@ -11,10 +11,10 @@ clean:
 	$(RM) *.class
 
 clean_data:
-	$(RM) data/*.txt
+	$(RM) data/*
 
 clean_downloaded_data:
-	$(RM) downloads/*.txt
+	$(RM) downloads/*
 
 clean_logfiles:
 	$(RM) logs/*
