@@ -1,4 +1,4 @@
-##Makefile commands to run the application
+## Makefile commands to run the application
 
 ### compile code
 make 
