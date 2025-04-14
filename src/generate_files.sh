@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Define the directory where files will be created
-DIR=$(grep 'fileDirectory' config.properties | cut -d'=' -f2)
+DIR="data/"
+
+# Create the directory if it doesn't exist
+mkdir -p "${DIR}"
 
 # Create files of specific sizes
 dd if=/dev/zero of="${DIR}128b.txt" bs=128 count=1

@@ -1,6 +1,9 @@
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,6 +11,8 @@ import java.util.logging.SimpleFormatter;
 
 public class Server_FS {
     private ServerSocket serverSocket;
+    private int clientNumber;
+    private static final AtomicInteger clientCount = new AtomicInteger(0);
     private File directory;
 
     private static final Logger logger = Logger.getLogger(Server_FS.class.getName());
@@ -15,17 +20,19 @@ public class Server_FS {
     static Properties prop = new Properties();
 
     static {
-        try {
-            FileHandler fileHandler = new FileHandler("fileserver.log", true);
-            fileHandler.setFormatter(new SimpleFormatter());
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error occur in FileHandler.", e);
-        }
         try (FileInputStream inputStream = new FileInputStream("config.properties")) {
             prop.load(inputStream);
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+        try {
+            String logDorectory = prop.getProperty("logDestinationDirectory");
+            Files.createDirectories(Paths.get(logDorectory));
+            FileHandler fileHandler = new FileHandler(logDorectory + File.separator + "fileserver.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error occur in FileHandler.", e);
         }
     }
 
