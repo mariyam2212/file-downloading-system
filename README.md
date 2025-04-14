@@ -1,3 +1,6 @@
+## Overview
+This is a client-server mode file downloading system. It involves the creation of a client and server program. The server hosts a list of files for the client to download. The client will get the file list from the server and then request for downloading one or more files of them from the server. Scale the implementation of client to evaluate the performance of the server.
+
 ## Makefile commands to run the application
 
 ### compile code
